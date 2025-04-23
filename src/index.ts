@@ -14,6 +14,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import authRoutes from './routes/auth'
 import path from 'path'
+import { getdb } from './utils/db'
 import { Key } from './models/key'
 
 dotenv.config()
