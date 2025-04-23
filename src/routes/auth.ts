@@ -46,19 +46,21 @@ router.get('/verify', validatekey, (req, res) => {
 router.post('/redeem', async (req, res) => {
     try {
         const { key } = req.body
+        const ip = req.headers['x-forwarded-for'] as string || req.socket.remoteAddress || 'unknown'
+        
         if (!key) {
             return res.status(400).json({ error: 'key is required' })
         }
 
-        const isValid = await Key.validate(key)
+        const isValid = await Key.validate(key, ip)
         if (!isValid) {
             return res.status(401).json({ error: 'invalid or expired key' })
         }
 
-        res.json({ success: true, message: 'key redeemed successfully' })
+        res.json({ success: true, message: 'key validated' })
     } catch (error) {
-        console.error('Redemption error:', error)
-        res.status(500).json({ error: 'redemption failed' })
+        console.error('key validation failed:', error)
+        res.status(500).json({ error: 'validation failed' })
     }
 })
 
