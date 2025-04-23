@@ -1,10 +1,19 @@
 # MODUVO Key Authentication System
 
+> [!IMPORTANT]
+> This software is protected by copyright law. Removal of attribution or MODUVO credits will result in immediate DMCA takedown.
+
+> [!WARNING]
+> Commercial use requires proper attribution to MODUVO. Failure to comply will result in license termination.
+
+> [!NOTE]
+> For authorized rebranding, you must include "Based on MODUVO Auth System" in your documentation and UI.
+
 IMPORTANT: USAGE REQUIREMENTS
-- Must maintain MODUVO attribution in all copies
-- Cannot remove watermarks from generated keys
-- Commercial use requires written permission
-- Failure to comply will result in DMCA takedown
+- Rebranding is allowed but must credit "Based on MODUVO Auth System"
+- Commercial use permitted with proper attribution
+- Source code must maintain MODUVO copyright notices
+- Failure to provide attribution will result in license termination
 
 Copyright (c) 2025 MODUVO. All rights reserved.
 Licensed under the MIT License.
@@ -50,4 +59,4 @@ MODUVO
 For commercial use and support:
 Reach out to setnamecallmethod on discord
 
-Made by jeeting
+Made by [jeeting]
