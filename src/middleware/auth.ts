@@ -10,19 +10,23 @@
  */
 
 import { Request, Response, NextFunction } from 'express'
-import { User } from '../models/user'
+import { Key } from '../models/key'
 
-interface RequestWithUser extends Request {
-    user?: any
+interface AuthRequest extends Request {
+    validated?: boolean
+    cIP?: string 
 }
 
-export const validatekey = async (req: RequestWithUser, res: Response, next: NextFunction) => {
+export const validatekey = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const apikey = req.header('x-api-key')
     if (!apikey) return res.status(401).json({ error: 'no api key provided' })
 
-    const user = await User.findOne({ api_key: apikey, api_key_enabled: true })
-    if (!user) return res.status(401).json({ error: 'invalid api key' })
+    const clientIp = req.headers['x-forwarded-for'] as string || req.socket.remoteAddress || 'unknown'
+    const isValid = await Key.validate(apikey, clientIp)
+    
+    if (!isValid) return res.status(401).json({ error: 'invalid or expired key' })
 
-    req.user = user
+    req.validated = true
+    req.cIP = clientIp
     next()
 }
