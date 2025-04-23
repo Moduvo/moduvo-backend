@@ -1,0 +1,47 @@
+<!--
+    Copyright (c) 2025 MODUVO
+    Licensed under the MIT License.
+    See LICENSE file for details.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODUVO Key Redemption</title>
+</head>
+<body>
+    <div id="redemption-form">
+        <h2>Enter your access key</h2>
+        <input type="text" id="key-input" placeholder="Enter key">
+        <button onclick="redeemKey()">Submit</button>
+    </div>
+    <div id="protected-content" style="display: none;">
+        <h1>redeemeed yes welcum</h1>
+        <p>Your key has been redeemed successfully.</p>
+    </div>
+
+    <script>
+        async function redeemKey() {
+            const key = document.getElementById('key-input').value
+            try {
+                const response = await fetch('/api/redeem', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ key })
+                })
+                const data = await response.json()
+                
+                if (data.success) {
+                    document.getElementById('redemption-form').style.display = 'none'
+                    document.getElementById('protected-content').style.display = 'block'
+                } else {
+                    alert('Invalid key')
+                }
+            } catch (error) {
+                alert('Error redeeming key')
+            }
+        }
+    </script>
+</body>
+</html>

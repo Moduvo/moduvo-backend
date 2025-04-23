@@ -1,0 +1,85 @@
+<!--
+    Copyright (c) 2025 MODUVO
+    Licensed under the MIT License.
+    See LICENSE file for details.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MODUVO Key Generator</title>
+    <style>
+        .key-display {
+            font-family: monospace;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        .copy-btn {
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Generate API Key</h2>
+        <div>
+            <input type="password" id="admin-secret" placeholder="Admin Secret">
+            <input type="number" id="uses" placeholder="Number of uses" value="1">
+            <select id="expires">
+                <option value="24h">24 Hours</option>
+                <option value="7d">7 Days</option>
+                <option value="30d">30 Days</option>
+            </select>
+            <button onclick="generatekey()">Generate Key</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function generatekey() {
+            const adminSecret = document.getElementById('admin-secret').value
+            const uses = document.getElementById('uses').value
+            const expiresIn = document.getElementById('expires').value
+
+            if (!adminSecret) {
+                document.getElementById('result').innerHTML = 
+                    '<p style="color:red">Admin secret required</p>'
+                return
+            }
+
+            try {
+                const response = await fetch('/api/generate-key', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminSecret, uses, expiresIn })
+                })
+                const data = await response.json()
+                if (data.success) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="key-display">
+                            <strong>${data.key}</strong>
+                            <button class="copy-btn" onclick="copyKey('${data.key}')">Copy</button>
+                        </div>
+                        <p>Uses: ${uses}</p>
+                        <p>Expires: ${new Date(data.expires).toLocaleString()}</p>
+                    `
+                } else {
+                    document.getElementById('result').innerHTML = 
+                        `<p style="color:red">Error: ${data.error || 'Failed to generate key'}</p>`
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    '<p style="color:red">Server error while generating key</p>'
+            }
+        }
+
+        function copyKey(key) {
+            navigator.clipboard.writeText(key);
+            alert('Key copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
