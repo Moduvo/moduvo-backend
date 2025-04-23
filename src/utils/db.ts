@@ -31,6 +31,8 @@ export async function initdb() {
                 uses INTEGER DEFAULT 1,
                 used INTEGER DEFAULT 0,
                 expires TEXT,
+                ip_address TEXT,
+                last_used TEXT,
                 created_at TEXT DEFAULT CURRENT_TIMESTAMP
             )
         `)
@@ -38,7 +40,29 @@ export async function initdb() {
     return db
 }
 
-export async function getdb() {
-    if (!db) await initdb()
-    return db!
+export async function getdb(): Promise<Database> {
+    try {
+        if (!db) {
+            db = await initdb()
+        }
+
+        if (!db) {
+            throw new Error('failed to initialize database')
+        }
+
+        const cols = await db.all('PRAGMA table_info(keys)')
+        
+        if (!cols.find(c => c.name === 'ip_address')) {
+            await db.exec('ALTER TABLE keys ADD COLUMN ip_address TEXT')
+        }
+        
+        if (!cols.find(c => c.name === 'last_used')) {
+            await db.exec('ALTER TABLE keys ADD COLUMN last_used TEXT')
+        }
+
+        return db
+    } catch (error) {
+        console.error('Database error:', error)
+        throw new Error('database connection failed')
+    }
 }
