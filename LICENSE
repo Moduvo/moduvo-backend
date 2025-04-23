@@ -1,27 +1,31 @@
-MIT License with Additional Conditions
+MIT License with Attribution Requirements
 
 Copyright (c) 2025 MODUVO
 
-Permission is hereby granted, subject to the following conditions:
+Permission is hereby granted to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, subject to the following conditions:
 
-1. The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. The above copyright notice and attribution to MODUVO as the original creator must be 
+   included in all copies or substantial portions of the Software, even if rebranded.
 
-2. Attribution to MODUVO must be clearly visible in any application using this software.
+2. Rebranding is permitted, but must include the text "Based on MODUVO Key System" 
+   in a visible location within the application and documentation.
 
-3. Generated API keys must maintain MODUVO watermarking.
+3. Generated keys may be reformatted, but must include "MODUVO" or "Based on MODUVO" 
+   in their metadata or documentation.
 
-4. Removal of copyright notices, watermarks, or attribution is expressly prohibited.
+4. Any commercial use must provide clear attribution to MODUVO.
 
-5. Commercial use requires explicit written permission from MODUVO.
+5. Failure to comply with these attribution requirements will result in:
+   a) Automatic termination of this license
+   b) Immediate DMCA takedown notices being filed
+   c) Legal action for copyright infringement
 
-Failure to comply with these conditions will result in automatic license termination
-and may be subject to DMCA takedown notices.
+6. By using this software, you acknowledge that MODUVO reserves the right to:
+   a) Monitor usage for compliance
+   b) Issue DMCA takedown notices without prior warning
+   c) Seek damages for willful infringement
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+For DMCA notices contact: setnamecallmethod on Discord
