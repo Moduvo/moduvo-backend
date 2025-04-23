@@ -9,6 +9,12 @@
 > [!NOTE]
 > For authorized rebranding, you must include "Based on MODUVO Auth System" in your documentation and UI.
 
+> [!IMPORTANT]
+> MODUVO retains superior DMCA rights. Sublicensing cannot be used to evade attribution requirements.
+
+> [!CAUTION]
+> Attempting to circumvent attribution through sublicensing will result in immediate license termination and legal action.
+
 IMPORTANT: USAGE REQUIREMENTS
 - Rebranding is allowed but must credit "Based on MODUVO Auth System"
 - Commercial use permitted with proper attribution
