@@ -59,10 +59,12 @@ Tech:
 ## License
 MIT License - Copyright (c) 2025 MODUVO
 
-## Organization
-MODUVO 
+## Support
+For technical issues and bug reports:
+[Create an Issue](https://github.com/MODUVO/moduvo-backend/issues)
 
-For commercial use and support:
-Reach out to setnamecallmethod on discord
+## Legal & DMCA
+For attribution requests, commercial use, or DMCA concerns:
+Contact: setnamecallmethod (Discord)
 
 Made by [jeeting]
