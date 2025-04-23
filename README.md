@@ -7,7 +7,7 @@
 > Commercial use requires proper attribution to MODUVO. Failure to comply will result in license termination.
 
 > [!NOTE]
-> For authorized rebranding, you must include "Based on MODUVO Auth System" in your documentation and UI.
+> For authorized rebranding, you must include "Based on MODUVO Auth System" in your documentation or UI.
 
 > [!IMPORTANT]
 > MODUVO retains superior DMCA rights. Sublicensing cannot be used to evade attribution requirements.
