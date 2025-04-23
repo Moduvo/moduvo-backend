@@ -18,7 +18,8 @@ interface KeyData {
     uses: number
     expires: Date
     used: number
-    hash: string
+    ipAddress?: string
+    lastUsed?: Date
 }
 
 export class Key {
@@ -40,18 +41,30 @@ export class Key {
         return { key: rawKey, expires }
     }
 
-    static async validate(key: string) {
+    static async validate(key: string, ip: string) {
+        if (!key || !ip) return false
+
         const db = await getdb()
         const hash = crypto.createHash('sha256').update(key).digest('hex')
         
-        const keyData = await db.get(
-            'SELECT * FROM keys WHERE hash = ? AND used < uses AND expires > ?',
+        const saved_key = await db.get(
+            'select * from keys where ip_address = ? and expires > ?',
+            ip, new Date().toISOString()
+        )
+
+        if (saved_key) return true
+
+        const keydata = await db.get(
+            'select * from keys where hash = ? and used < uses and expires > ?',
             hash, new Date().toISOString()
         )
         
-        if (!keyData) return false
+        if (!keydata) return false
 
-        await db.run('UPDATE keys SET used = used + 1 WHERE hash = ?', hash)
+        await db.run(
+            'update keys set used = used + 1, ip_address = ?, last_used = ? where hash = ?',
+            ip, new Date().toISOString(), hash
+        )
         return true
     }
 
