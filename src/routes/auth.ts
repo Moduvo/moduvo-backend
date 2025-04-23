@@ -10,34 +10,10 @@
  */
 
 import express from 'express'
-import { User } from '../models/user'
 import { validatekey } from '../middleware/auth'
 import { Key } from '../models/key'
 
 const router = express.Router()
-
-router.post('/register', async (req, res) => {
-    try {
-        console.log('Registration attempt:', req.body)
-        const { email, name } = req.body
-        
-        if (!email || !name) {
-            return res.status(400).json({ error: 'email and name are required' })
-        }
-
-        const user = new User({ email, name })
-        const apikey = await user.generatekey()
-        
-        res.status(201).json({ 
-            status: 'success',
-            apikey,
-            message: 'Use this API key in x-api-key header'
-        })
-    } catch (error: any) {
-        console.error('Registration failed:', error)
-        res.status(400).json({ error: error.message })
-    }
-})
 
 router.get('/verify', validatekey, (req, res) => {
     res.json({ valid: true })
